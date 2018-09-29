@@ -45,6 +45,8 @@
               if (this.input !== '') {
                 let encodeJS = encodeURIComponent(`function(){${this.input.replace(/\s+/g, ' ')}}`)
                 return `javascript:(${encodeJS})()`
+              } else {
+                return ''
               }
             }
           },
