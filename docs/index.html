@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <form class="container py-5">
+    <form v-on:reset="formReset" class="container py-5">
       <div class="row no-gutters">
         <div class="col-sm-6">
           <textarea id="input" rows="10" v-model="input" class="form-control"></textarea>
@@ -42,7 +42,7 @@
             input: '',
           },
           computed: {
-            output: function () {
+            output() {
               if (this.input !== '') {
                 let encodeJS = encodeURIComponent(`function(){${this.input.replace(/\s+/g, ' ')}}`)
                 return `javascript:(${encodeJS})()`
@@ -51,7 +51,12 @@
               }
             }
           },
-          mounted: function () {
+          methods: {
+            formReset() {
+              this.input = ''
+            }
+          },
+          mounted() {
             document.querySelector('#input').focus()
           }
         })
